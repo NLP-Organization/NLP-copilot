@@ -1,4 +1,5 @@
-from autocorrect import Speller
+import language_tool_python
+
 
 """ Notes:
 
@@ -15,7 +16,15 @@ Goals:
 3. Publish a Google plug-in
 """
 
+# spell = Speller()  # create Speller object
+my_tool = language_tool_python.LanguageTool('en-US')  # create language-tool
 
-spell = Speller()  # create Speller object
+my_text = "A quick broun fox jumpps over a a little lazy dog. I'm not sleapy and tehre is no place I'm giong to."
 
-print(spell("I'm not sleapy and tehre is no place I'm giong to."))
+
+# apply correction
+correct_text = my_tool.correct(my_text)
+
+# Print text
+print("Original Text: ", my_text)
+print("Text after correction: ", correct_text)

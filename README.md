@@ -3,12 +3,11 @@
 
 ## Installations
 ```
-pip install autocorrect
+pip install language-tool-python  
 ```
 
 ## Libraries
-Python autocorrect
-* https://github.com/filyp/autocorrect
+* Language-tool-python
 
 ## Project Architecture
 
