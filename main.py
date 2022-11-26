@@ -1,6 +1,4 @@
 import language_tool_python
-from tkinter import *
-from tkinter.ttk import *
 
 """ Notes:
 
@@ -31,54 +29,37 @@ def get_matches(tool, text):
     return my_matches
 
 
+# each dictionary stores an aspect of an error. KEY: VALUE -> errorID: offset/length/ruleID/message/replacements
+offset_dict, length_dict, ruleID_dict, message_dict, replacements_dict = {}, {}, {}, {}, {}
+
+
+# updating error attribute in respective dictionaries
+def parse_for_dict(error, error_id):
+    offset_dict[error_id] = error.offset
+    length_dict[error_id] = error.errorLength
+    ruleID_dict[error_id] = error.ruleId
+    message_dict[error_id] = error.message
+    replacements_dict[error_id] = error.replacements
+
+
 my_tool = language_tool_python.LanguageTool('en-US')  # create language-tool
 my_text = "A quick broun fox jumpps over a a little lazy dog. I'm not sleapy and tehre is no place I'm giong to."
-# create root window
-root = Tk()
-
-# root window title and dimension
-root.title("Welcome to GeekForGeeks")
-# Set geometry(widthxheight)
-root.geometry('700x350')
-
-
-# adding menu bar in root window
-# new item in menu bar labelled as 'New'
-# adding more items in the menu bar
-menu = Menu(root)
-item = Menu(menu)
-item.add_command(label='New')
-menu.add_cascade(label='File', menu=item)
-root.config(menu=menu)
-
-# adding a label to the root window
-lbl = Label(root, text="Input sentence: ")
-lbl.grid()
-
-# adding Entry Field
-txt = Entry(root, width=10)
-txt.grid(column=1, row=0)
-
-
-# function to display user text when
-# button is clicked
-def clicked():
-    fix = "Output: " + auto_correction(my_tool, txt.get())
-    lbl.configure(text=fix)
-
-
-# button widget with red color text inside
-btn = Button(root, text="Enter", command=clicked)
-# Set Button Grid
-btn.grid(column=2, row=0)
-
-# Execute Tkinter
-root.mainloop()
 
 print(auto_correction(my_tool, my_text))
 
 my_list = get_matches(my_tool, my_text)
 
+# TODO: generate unique match_id by strings
+match_id = 0
 for match in my_list:
-    print(match)
+    parse_for_dict(match, match_id)
+    match_id += 1
+
+print(offset_dict)
+print(length_dict)
+print(ruleID_dict)
+print(message_dict)
+print(replacements_dict)
+
+
 
