@@ -1,0 +1,66 @@
+{
+    "1000": {
+        "word": "broun",
+        "offset": 8,
+        "length": 5,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
+        "replacements": [
+            "brown",
+            "Brown",
+            "Braun"
+        ]
+    },
+    "1001": {
+        "word": "jumpps",
+        "offset": 18,
+        "length": 6,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
+        "replacements": [
+            "jumps"
+        ]
+    },
+    "1002": {
+        "word": "a a",
+        "offset": 30,
+        "length": 3,
+        "ruleID": "ENGLISH_WORD_REPEAT_RULE",
+        "message": "Possible typo: you repeated a word",
+        "replacements": [
+            "a"
+        ]
+    },
+    "1003": {
+        "word": "sleapy",
+        "offset": 59,
+        "length": 6,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
+        "replacements": [
+            "sleepy",
+            "sleazy"
+        ]
+    },
+    "1004": {
+        "word": "tehre",
+        "offset": 70,
+        "length": 5,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
+        "replacements": [
+            "there"
+        ]
+    },
+    "1005": {
+        "word": "giong",
+        "offset": 92,
+        "length": 5,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
+        "replacements": [
+            "going",
+            "gong"
+        ]
+    }
+}
