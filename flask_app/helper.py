@@ -1,23 +1,9 @@
 import language_tool_python
-import requests
 import json
 
-
-""" Notes:
-
-References:
-Grammarly
-
-Python Libraries we want to use:
-NLTK Package
-PyDictionary
-
-Goals:
-1. Start with: Grammar Check
-2. Essay Copilot (think github copilot),  correct grammar mistakes, recommend synonyms
-3. Have a switch to swap between suggesting mode and autocomplete/autocorrect mode
-4. Publish a Google plug-in
-"""
+# TODO:
+# Create a webpage similar to google docs (make it fancy with CSS)
+# Grammar suggestions/copiloting toggled via button
 
 
 # return corrected text - spelling + grammar fixed
@@ -55,13 +41,6 @@ match_id = 1000
 for match in my_list:
     parse_for_dict(my_text, match, match_id)
     match_id += 1
-
-
-# TODO: Make an API that returns the mistake based on ID
-# we pass in an ID, and the mistake attributes are fetched from dicts and returned
-# return as JSON
-
-# TODO: create JSON for mistakes - store each mistake as a separate entry
 
 
 def convert_to_JSON(match_id):
