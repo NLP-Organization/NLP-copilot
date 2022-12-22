@@ -8,4 +8,8 @@ app = Flask(__name__, template_folder='templates/', static_folder='static/', ins
 # Route for the text editor page
 @app.route("/", methods=['GET', 'POST'])
 def display_index():
-    return render_template('index.html')
+    return render_template('editor.html')
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
