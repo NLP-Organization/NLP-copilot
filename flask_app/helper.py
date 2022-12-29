@@ -7,7 +7,8 @@ import json
 
 
 # return corrected text - spelling + grammar fixed
-def auto_correction(tool, text):
+def auto_correction(text):
+    tool = language_tool_python.LanguageTool('en-US')
     correct_text = tool.correct(text)
     return correct_text
 
@@ -65,4 +66,4 @@ def convert_to_JSON(match_id):
         outfile.write(json_object)
 
 
-convert_to_JSON(match_id)
+# convert_to_JSON(match_id)

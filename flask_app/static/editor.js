@@ -19,3 +19,14 @@ function changeSize() {
 	const size = document.getElementById('fontSize').value;
 	document.execCommand('fontSize', false, size);
 }
+
+function autoCorrect() {
+	var text = document.getElementById("editor").innerText;
+	console.log(text);
+    $.ajax({
+    	url:"/autoCorrect",
+    	type: "POST",
+    	contentType: "application/JSON",
+    	data: JSON.stringify(text)
+    	});
+	}
