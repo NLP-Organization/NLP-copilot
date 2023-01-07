@@ -27,6 +27,11 @@ function autoCorrect() {
     	url:"/autoCorrect",
     	type: "POST",
     	contentType: "application/JSON",
-    	data: JSON.stringify(text)
+    	data: JSON.stringify(text),
+		success: function(res){
+			document.getElementById("editor").innerText = res;
+			console.log(res);
+		}
     	});
+
 	}

@@ -1,6 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask import render_template
 import helper
+
 
 # To run through commandline, use flask run
 app = Flask(__name__, template_folder='templates/', static_folder='static/', instance_relative_config=False)
@@ -19,7 +20,7 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
     print(text)
     print(correct_text)
 
-    return text
+    return correct_text
 
 
 if __name__ == "__main__":
