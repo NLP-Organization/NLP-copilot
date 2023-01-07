@@ -1,10 +1,18 @@
 import language_tool_python
 import json
 
-# TODO:
-# Create a webpage similar to google docs (make it fancy with CSS)
-# Grammar suggestions/copiloting toggled via button
+# TODO: make this py into a class
 
+
+# ** GLOBAL VARIABLES **
+
+match_id = 1000  # match_id starts at 1000
+
+# each dictionary stores an aspect of an error
+# KEY: VALUE -> errorID: word/offset/length/ruleID/message/replacements
+word_dict, offset_dict, length_dict, ruleID_dict, message_dict, replacements_dict = {}, {}, {}, {}, {}, {}
+
+lang_tool = language_tool_python.LanguageTool('en-US')  # create language-tool
 
 # return corrected text - spelling + grammar fixed
 def auto_correction(text):
@@ -15,13 +23,8 @@ def auto_correction(text):
 
 # get matches to text - used for suggested changes
 def get_matches(tool, text):
-    my_matches = tool.check(my_text)
+    my_matches = tool.check(text)
     return my_matches
-
-
-# each dictionary stores an aspect of an error. KEY: VALUE -> errorID: word/offset/length/ruleID/message/replacements
-word_dict, offset_dict, length_dict, ruleID_dict, message_dict, replacements_dict = {}, {}, {}, {}, {}, {}
-
 
 # updating error attribute in respective dictionaries
 def parse_for_dict(text, error, error_id):
@@ -33,17 +36,19 @@ def parse_for_dict(text, error, error_id):
     replacements_dict[error_id] = error.replacements
 
 
-my_tool = language_tool_python.LanguageTool('en-US')  # create language-tool
-my_text = "A quick broun fox jumpps over a a little lazy dog. I'm not sleapy and tehre is no place I'm giong to."
+# return list of errors
+def return_errors(m_id, tool, text):
+    error_list = get_matches(tool, text)
 
-my_list = get_matches(my_tool, my_text)
+    for error in error_list:
+        parse_for_dict(text, error, m_id)
+        m_id += 1
 
-match_id = 1000
-for match in my_list:
-    parse_for_dict(my_text, match, match_id)
-    match_id += 1
+    convert_to_JSON(m_id)
+    return None  # temp
 
 
+# convert provided matches to JSON file to be returned to document front-end
 def convert_to_JSON(match_id):
     temp_dict = {}  # temporary dictionary
 
@@ -66,4 +71,5 @@ def convert_to_JSON(match_id):
         outfile.write(json_object)
 
 
-# convert_to_JSON(match_id)
+return_errors(match_id, lang_tool, "A quick broun fox jumpps over a a little lazy dog. I'm not sleapy and tehre is no place I'm giong to.")
+print(match_id)

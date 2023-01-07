@@ -1,66 +1,93 @@
 {
     "1000": {
-        "word": "broun",
-        "offset": 8,
+        "word": "henlo",
+        "offset": 0,
         "length": 5,
-        "ruleID": "MORFOLOGIK_RULE_EN_US",
-        "message": "Possible spelling mistake found.",
+        "ruleID": "UPPERCASE_SENTENCE_START",
+        "message": "This sentence does not start with an uppercase letter.",
         "replacements": [
-            "brown",
-            "Brown",
-            "Braun"
+            "Henlo"
         ]
     },
     "1001": {
-        "word": "jumpps",
-        "offset": 18,
+        "word": "wornld",
+        "offset": 6,
         "length": 6,
         "ruleID": "MORFOLOGIK_RULE_EN_US",
         "message": "Possible spelling mistake found.",
         "replacements": [
-            "jumps"
+            "world"
         ]
     },
     "1002": {
-        "word": "a a",
-        "offset": 30,
-        "length": 3,
-        "ruleID": "ENGLISH_WORD_REPEAT_RULE",
-        "message": "Possible typo: you repeated a word",
+        "word": "nime",
+        "offset": 16,
+        "length": 4,
+        "ruleID": "MORFOLOGIK_RULE_EN_US",
+        "message": "Possible spelling mistake found.",
         "replacements": [
-            "a"
+            "time",
+            "name",
+            "nice",
+            "nine",
+            "anime",
+            "lime",
+            "Nice",
+            "Nile",
+            "Nike",
+            "dime",
+            "mime",
+            "Nome",
+            "IME",
+            "MIME",
+            "PIME",
+            "TIME",
+            "rime",
+            "NIKE",
+            "NVMe",
+            "N\u00eemes"
         ]
     },
     "1003": {
-        "word": "sleapy",
-        "offset": 59,
-        "length": 6,
+        "word": "markiplor",
+        "offset": 24,
+        "length": 9,
         "ruleID": "MORFOLOGIK_RULE_EN_US",
         "message": "Possible spelling mistake found.",
         "replacements": [
-            "sleepy",
-            "sleazy"
+            "Maribor"
         ]
     },
     "1004": {
-        "word": "tehre",
-        "offset": 70,
-        "length": 5,
-        "ruleID": "MORFOLOGIK_RULE_EN_US",
-        "message": "Possible spelling mistake found.",
+        "word": "i",
+        "offset": 35,
+        "length": 1,
+        "ruleID": "I_LOWERCASE",
+        "message": "The personal pronoun \u201cI\u201d should be uppercase.",
         "replacements": [
-            "there"
+            "I"
         ]
     },
     "1005": {
-        "word": "giong",
-        "offset": 92,
+        "word": "vidoe",
+        "offset": 40,
         "length": 5,
         "ruleID": "MORFOLOGIK_RULE_EN_US",
         "message": "Possible spelling mistake found.",
         "replacements": [
-            "going",
-            "gong"
+            "video",
+            "vi doe",
+            "vide"
+        ]
+    },
+    "1006": {
+        "word": "i",
+        "offset": 54,
+        "length": 1,
+        "ruleID": "I_LOWERCASE",
+        "message": "The personal pronoun \u201cI\u201d should be uppercase.",
+        "replacements": [
+            "I"
         ]
     }
 }

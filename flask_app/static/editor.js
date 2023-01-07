@@ -21,17 +21,16 @@ function changeSize() {
 }
 
 function autoCorrect() {
-	var text = document.getElementById("editor").innerText;
-	console.log(text);
+    var text = document.getElementById("editor").innerText;
+    console.log(text);
     $.ajax({
-    	url:"/autoCorrect",
-    	type: "POST",
-    	contentType: "application/JSON",
-    	data: JSON.stringify(text),
-		success: function(res){
-			document.getElementById("editor").innerText = res;
-			console.log(res);
-		}
-    	});
-
-	}
+        url:"/autoCorrect",
+        type: "POST",
+        contentType: "application/JSON",
+        data: JSON.stringify(text),
+        success: function(res){
+            document.getElementById("editor").innerText = res;
+            console.log(res);
+        }
+        });
+    }

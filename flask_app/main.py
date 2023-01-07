@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+import language_tool_python
+from flask import Flask, request
 from flask import render_template
-import helper
-
+from helper import auto_correction, return_errors
 
 # To run through commandline, use flask run
 app = Flask(__name__, template_folder='templates/', static_folder='static/', instance_relative_config=False)
@@ -16,10 +16,11 @@ def display_index():
 @app.route("/autoCorrect", methods=["POST"])  # Listens for Javascript Autocorrect AJAX Call
 def autocorrect():  # Retrieves text from JS and autocorrects it
     text = request.get_json()
-    correct_text = helper.auto_correction(text)
+    correct_text = auto_correction(text)
+    tmp = language_tool_python.LanguageTool('en-US')  # temporary, just for testing
+    errs = return_errors(1000, tmp, text)  # writes to JSON
     print(text)
     print(correct_text)
-
     return correct_text
 
 
