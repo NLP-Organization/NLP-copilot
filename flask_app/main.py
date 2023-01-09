@@ -28,13 +28,14 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
     print(correct_text)
     return correct_text
 
-@app.route("/testRoute")
-def testRoute():
+@app.route("/saveFile", methods=["POST"])  # Listens for Javascript SaveFile function
+def saveFile():  # Retrieves data from JS and saves it to DB
+    data = request.get_json()
+    document = text_document(name=data["name"], text=data["text"])
     db.create_all()
-    s2 = text_document(name="Test", text="Hi!")
-    db.session.add(s2)
-    db.session.commit()
-    return "Hello World"
+    document.save()
+    return "Document Saved!"
+
 
 if __name__ == "__main__":
     app.run(debug=True)

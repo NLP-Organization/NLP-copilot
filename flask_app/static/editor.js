@@ -22,6 +22,18 @@ function changeSize() {
 
 function saveFile() {
     var text = document.getElementById("editor").innerText;
+    var name = document.getElementById("documentName").value;
+    var docData = {"name": name, "text": text}
+    console.log(name);
+    $.ajax({
+        url:"/saveFile",
+        type:"POST",
+        contentType: "application/JSON",
+        data: JSON.stringify(docData),
+        success: function(res){
+            console.log(res);
+        }
+    })
 }
 
 function autoCorrect() {

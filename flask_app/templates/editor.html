@@ -17,6 +17,7 @@
 	<div class="container">
 		<div class="edit-icons">
 			<div class="format-section">
+				<input type="text" id="documentName">
 				<a href="javascript:void(0)" onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></a>
 
 				<a href="javascript:void(0)" onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></a>
@@ -71,6 +72,7 @@
 					<option value="8">8</option>
 				</select>
 				<button onclick="autoCorrect()">Autocorrect!</button>
+				<button onclick="saveFile()">Save!</button>
 				<span id="status"></span>
 				<span id="log"></span>
 			</div>
