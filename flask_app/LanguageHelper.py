@@ -1,11 +1,12 @@
 import language_tool_python
 import json
 
-# TODO: make this py into a class
 
+# TODO: fix formatting getting removed from document when autocorrecting
+# TODO: add limit to replacement words
 
 # ** GLOBAL VARIABLES **
-class LanguageHelper():
+class LanguageHelper:
     match_id = 1000  # match_id starts at 1000
 
     # each dictionary stores an aspect of an error
@@ -19,7 +20,6 @@ class LanguageHelper():
         correct_text = self.lang_tool.correct(text)
         return correct_text
 
-
     # get matches to text - used for suggested changes
     def get_matches(self, text):
         my_matches = self.lang_tool.check(text)
@@ -32,8 +32,11 @@ class LanguageHelper():
         self.length_dict[error_id] = error.errorLength
         self.ruleID_dict[error_id] = error.ruleId
         self.message_dict[error_id] = error.message
-        self.replacements_dict[error_id] = error.replacements
-
+        # truncate possible replacements when there are more than 10 possible replacements
+        if len(error.replacements) > 10:
+            self.replacements_dict[error_id] = error.replacements[0:10]
+        else:
+            self.replacements_dict[error_id] = error.replacements
 
     # return list of errors
     def return_errors(self, text):
@@ -45,7 +48,6 @@ class LanguageHelper():
 
         self.convert_to_JSON(self.match_id)
         return None  # temp
-
 
     # convert provided matches to JSON file to be returned to document front-end
     def convert_to_JSON(self, match_id):
@@ -68,4 +70,3 @@ class LanguageHelper():
 
         with open("JSON/errors.json", "w") as outfile:
             outfile.write(json_object)
-
