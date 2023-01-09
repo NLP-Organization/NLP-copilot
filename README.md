@@ -9,7 +9,9 @@ pip install language-tool-python
 pip install flask
 pip install flask-sqlalchemy
 pip install flask-mysqldb
+pip install Flask-Testing
 ```
+
 A .env file is also necessary in order to connect SQLAlchemy to your MySQL database. Set your configuration to "config" in your .env file.
 
 ## How to Run
