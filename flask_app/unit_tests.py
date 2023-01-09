@@ -13,6 +13,7 @@ class CopilotTestCase(TestCase):
 
         self.assertEqual(lang_help.auto_correction(my_string),
                         "This is a sentence.")
+    
 
 if __name__ == "__main__":
     main()

@@ -20,6 +20,10 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
+function saveFile() {
+    var text = document.getElementById("editor").innerText;
+}
+
 function autoCorrect() {
     var text = document.getElementById("editor").innerText;
     console.log(text);
