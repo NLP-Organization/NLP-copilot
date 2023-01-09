@@ -10,7 +10,7 @@ class DbBaseModel(db.Model):
         db.session.commit()
 
 class text_document(DbBaseModel):
-    id = db.Column("text_id", db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
     text = db.Column(db.Text)
 

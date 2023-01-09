@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document Selection</title>
+    </head>
+    <body>
+        {% for doc in documents %}
+        <div>
+            <p id="docId">{{doc.id}}</p>
+            <p id="docName">{{doc.name}}</p>
+        </div>
+        {% endfor %}
+        <script src="./static/index.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </body>
+</html>

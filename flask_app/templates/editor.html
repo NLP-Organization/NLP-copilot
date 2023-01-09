@@ -17,7 +17,8 @@
 	<div class="container">
 		<div class="edit-icons">
 			<div class="format-section">
-				<input type="text" id="documentName">
+				<p style="display:inline" id="documentId">{{document.id}}</p>
+				<input type="text" id="documentName", value="{{document.name}}">
 				<a href="javascript:void(0)" onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></a>
 
 				<a href="javascript:void(0)" onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></a>
@@ -81,6 +82,7 @@
 		<div class="edit-content">
 			<div class="editor" contenteditable="true" id="editor">
                 <p class="loading" id="loading">Saving document....</p>
+				{{document.text}}
             </div>
 
 		</div>

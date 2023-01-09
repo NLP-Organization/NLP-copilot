@@ -12,10 +12,17 @@ dotenv.load_dotenv()
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("config")
 db.init_app(app)
 
+@app.route("/")  # displays a list of the saved documents from the DB
+def home():
+    documents = text_document.query.order_by("name").all()
+    return render_template("index.html", documents=documents)
+
 # Route for the text editor page
-@app.route("/", methods=['GET', 'POST'])
-def display_index():
-    return render_template('editor.html')
+@app.route("/editor<int:id>", methods=['GET', 'POST'])
+def display_index(id):
+    document = text_document.query.get(id)
+    print(document)
+    return render_template('editor.html', document=document)
 
 
 @app.route("/autoCorrect", methods=["POST"])  # Listens for Javascript Autocorrect AJAX Call
@@ -31,9 +38,17 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
 @app.route("/saveFile", methods=["POST"])  # Listens for Javascript SaveFile function
 def saveFile():  # Retrieves data from JS and saves it to DB
     data = request.get_json()
-    document = text_document(name=data["name"], text=data["text"])
-    db.create_all()
-    document.save()
+    # Update text_document if it currently exists in the DB
+    if text_document.query.get(int(data["id"])) != None:
+        document = text_document.query.get(int(data["id"]))
+        db.create_all()
+        document.name = data["name"]
+        document.text = data["text"]
+        document.save()
+    else:  # Create new text_document if DNE in DB
+        document = text_document(name=data["name"], text=data["text"])
+        db.create_all()
+        document.save()
     return "Document Saved!"
 
 
