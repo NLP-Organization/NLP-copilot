@@ -14,7 +14,7 @@ db.init_app(app)
 
 @app.route("/")  # displays a list of the saved documents from the DB
 def home():
-    documents = text_document.query.order_by("name").all()
+    documents = text_document.query.order_by(text_document.id.desc()).all()
     return render_template("index.html", documents=documents)
 
 # Route for the text editor page
@@ -38,16 +38,17 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
 @app.route("/saveFile", methods=["POST"])  # Listens for Javascript SaveFile function
 def saveFile():  # Retrieves data from JS and saves it to DB
     data = request.get_json()
-    # Update text_document if it currently exists in the DB
-    if text_document.query.get(int(data["id"])) != None:
+    
+    # Create new text_document if DNE in DB 
+    if data["id"] == "":
+        document = text_document(name=data["name"], text=data["text"])
+        db.create_all()
+        document.save()
+    else:  # Update text_document if it currently exists in the DB
         document = text_document.query.get(int(data["id"]))
         db.create_all()
         document.name = data["name"]
         document.text = data["text"]
-        document.save()
-    else:  # Create new text_document if DNE in DB
-        document = text_document(name=data["name"], text=data["text"])
-        db.create_all()
         document.save()
     return "Document Saved!"
 
