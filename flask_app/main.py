@@ -15,7 +15,7 @@ db.init_app(app)
 @app.route("/")  # displays a list of the saved documents from the DB
 def home():
     documents = text_document.query.order_by(text_document.id.desc()).all()
-    return render_template("copy.html", documents=documents)
+    return render_template("index.html", documents=documents)
 
 # Route for the text editor page
 @app.route("/editor<int:id>", methods=['GET', 'POST'])

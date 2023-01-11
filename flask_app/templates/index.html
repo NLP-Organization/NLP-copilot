@@ -1,20 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-    <head>
-        <title>Document Selection</title>
-    </head>
-    <body>
-        <div>
-            <p>Create a new Text Document</p>
-            <input type="button" value="Create a New Doc" onclick="window.location='/editor{{documents[0].id + 1}}';">
-        </div>
-        {% for doc in documents %}
-        <div>
-            <p id="docName">{{doc.name}}</p>
-            <input type="button" value="Edit Document" onclick="window.location='/editor{{doc.id}}';">
-        </div>
-        {% endfor %}
-        <script src="./static/index.js"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    </body>
+<head>
+<title>Home</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="./static/index.css" />
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <h1>Document Selection</h1>
+  </div>
+  <div id="wrapper">
+    <!-- <div id="content">
+      <p><strong>Content here.</strong></p>
+      <p>Sapibulumnibh phasellus nulla egestibulum enim pretium elit tincidunt estiquam ultrisque donectetur. Sedcondimentumsan odio hendrerit proin vitae dignis nibh ac justo id congue. Amesintesque vel curabitae volutpat donec alique nasceleifendimentesque montesque rhoncus quis eros. Vestnunc nonummy</p>
+      <p>Montegeraliquam sed pede in cursus praesenec vestas rhoncus wisi at wisi. Condisseloborttis enim et ipsum mauristie id felit adipiscipit ac auctortorttitor sempor. Vitantesqueat sempus non sed et mus sit vivamus purus netus hendiment. Pretiuma diam et id tempus dolor por wisi sed volutpat facilisi.</p>
+      <p>Wisiet sus adipit phasellentum elit condissim consecteturpiscing sapien vivamus et congue. Utvel tris quismod cursus liberos elit nisse curabitur tur parturpis tellenterdum. Semperligula curabitae tellentesque nulla trices vestas ristibulum id justo auctor facinia. Natisdonec consequat nibh pellus.</p>
+      <p>Vestibusodio euisque id elerisus lacus tincidunt sit malesuada lacus pellus parturpiscing. Pellenterdumat maecenatoque cras a magna nibh et quis diam ames et. Laoremvolutpat ac dolor eget eget temper lacus vestibus velit lacus venean. Magnaipsum tellus morbi leo aliquat nulla convallis pellentesque.</p>
+    </div>
+  </div> -->
+  <div id="navigation">
+    <p>Create a new Text Document</p>
+    <input type="button" value="Create a New Doc" onclick="window.location='/editor{{documents[0].id + 1}}';">
+  </div>
+  {% for doc in documents %}
+  <div id="extra">
+    <p id="docName">{{doc.name}}</p>
+    <input type="button" value="Edit Document" onclick="window.location='/editor{{doc.id}}';">
+  </div>
+  {% endfor %}
+  <div id="footer">
+    <p>Footer</p>
+  </div>
+</div>
+<script src="./static/index.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
 </html>

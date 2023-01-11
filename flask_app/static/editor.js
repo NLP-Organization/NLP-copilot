@@ -51,3 +51,5 @@ function autoCorrect() {
         }
         });
     }
+
+setInterval(saveFile, 10000);
