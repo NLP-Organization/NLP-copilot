@@ -10,7 +10,6 @@
         </div>
         {% for doc in documents %}
         <div>
-            <p id="docId">{{doc.id}}</p>
             <p id="docName">{{doc.name}}</p>
             <input type="button" value="Edit Document" onclick="window.location='/editor{{doc.id}}';">
         </div>
