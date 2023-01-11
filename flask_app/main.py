@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask import render_template
 from LanguageHelper import LanguageHelper
+from helper import untitled, get_documents_length
 from models import text_document, db
 import dotenv, os
 
@@ -14,8 +15,10 @@ db.init_app(app)
 
 @app.route("/")  # displays a list of the saved documents from the DB
 def home():
+    db.create_all()
     documents = text_document.query.order_by(text_document.id.desc()).all()
-    return render_template("copy.html", documents=documents)
+    length = get_documents_length(documents)
+    return render_template("index.html", documents=documents, length=length)
 
 # Route for the text editor page
 @app.route("/editor<int:id>", methods=['GET', 'POST'])
@@ -41,16 +44,18 @@ def saveFile():  # Retrieves data from JS and saves it to DB
     
     # Create new text_document if DNE in DB 
     if data["id"] == "":
-        document = text_document(name=data["name"], text=data["text"])
+        name = untitled(data["name"])
+        document = text_document(name=name, text=data["text"])
         db.create_all()
         document.save()
     else:  # Update text_document if it currently exists in the DB
         document = text_document.query.get(int(data["id"]))
         db.create_all()
-        document.name = data["name"]
+        name = untitled(data["name"])
+        document.name = name
         document.text = data["text"]
         document.save()
-    return "Document Saved!"
+    return str(document.id)
 
 if __name__ == "__main__":
     app.run(debug=True)

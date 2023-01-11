@@ -32,7 +32,8 @@ function saveFile() {
         contentType: "application/JSON",
         data: JSON.stringify(docData),
         success: function(res){
-            console.log(res);
+            document.getElementById("documentId").innerText = res;
+            console.log("Document Saved!");
         }
     })
 }
@@ -51,3 +52,5 @@ function autoCorrect() {
         }
         });
     }
+
+setInterval(saveFile, 10000);
