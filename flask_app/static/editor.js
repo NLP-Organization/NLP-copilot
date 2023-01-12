@@ -27,7 +27,7 @@ function saveFile() {
     var docData = {"id": id, "name": name, "text": text}
     console.log(name);
     $.ajax({
-        url:"/saveFile",
+        url:"/editFile",
         type:"POST",
         contentType: "application/JSON",
         data: JSON.stringify(docData),
@@ -36,6 +36,25 @@ function saveFile() {
             console.log("Document Saved!");
         }
     })
+}
+
+function deleteFile() {
+    const response  = confirm("Are you sure you want to delete?")
+    if (response) {
+        var id = document.getElementById("documentId").innerText;
+        var text = document.getElementById("editor").innerText;
+        var name = document.getElementById("documentName").value;
+        var docData = {"id": id, "name": name, "text": text}
+        $.ajax({
+            url: "/editFile",
+            type: "DELETE",
+            contentType: "application/JSON",
+            data: JSON.stringify(docData),
+            success: function(res) {
+                window.location.href = "http://127.0.0.1:5000/"
+            }
+        })
+    }
 }
 
 function autoCorrect() {

@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask import render_template
+from flask import render_template, url_for
 from LanguageHelper import LanguageHelper
 from helper import untitled, get_documents_length
 from models import text_document, db
@@ -38,7 +38,7 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
     print(correct_text)
     return correct_text
 
-@app.route("/saveFile", methods=["POST"])  # Listens for Javascript SaveFile function
+@app.post("/editFile")  # Listens for Javascript SaveFile function
 def saveFile():  # Retrieves data from JS and saves it to DB
     data = request.get_json()
     
@@ -56,6 +56,18 @@ def saveFile():  # Retrieves data from JS and saves it to DB
         document.text = data["text"]
         document.save()
     return str(document.id)
+
+@app.delete("/editFile")
+def deleteFile():
+    data = request.get_json()
+    document = text_document.query.get(int(data["id"]))
+    db.create_all()
+    db.session.delete(document)
+    db.session.commit()
+    return url_for("home")
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
