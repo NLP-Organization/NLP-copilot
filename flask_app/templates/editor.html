@@ -75,11 +75,20 @@
 				</select>
 				<button onclick="autoCorrect()">Autocorrect!</button>
 				<button onclick="deleteFile()">Delete!</button>
+				<div id="mySidebar" class="sidebar">
+					<div class="closebtn" onclick="closeNav()">×</div>
+					<div>About</div>
+					<div>Services</div>
+					<div>Clients</div>
+				</div>
+				<div id="main">
+					<button id="openbtn" class="openbtn" onclick="openNav()">Check Errors</button> 
+				</div>
 				<span id="status"></span>
 				<span id="log"></span>
 			</div>
+				
 
-		</div>
 		<div class="edit-content">
 			<div class="editor" contenteditable="true" id="editor">
                 <p class="loading" id="loading">Saving document....</p>
