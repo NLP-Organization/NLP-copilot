@@ -46,8 +46,8 @@ class LanguageHelper:
             self.parse_for_dict(text, error, self.match_id)
             self.match_id += 1
 
-        self.convert_to_JSON(self.match_id)
-        return None  # temp
+        json_object = self.convert_to_JSON(self.match_id)
+        return json_object # temp
 
     # convert provided matches to JSON file to be returned to document front-end
     def convert_to_JSON(self, match_id):
@@ -66,7 +66,7 @@ class LanguageHelper:
             temp_dict[i] = entry_dict
 
         json_object = json.dumps(temp_dict, indent=4)
-        print(json_object)
 
         with open("JSON/errors.json", "w") as outfile:
             outfile.write(json_object)
+        return json_object

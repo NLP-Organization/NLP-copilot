@@ -35,8 +35,8 @@ def autocorrect():  # Retrieves text from JS and autocorrects it
     correct_text = lang_helper.auto_correction(text)
     errs = lang_helper.return_errors(text)  # writes to JSON
     print(text)
-    print(correct_text)
-    return correct_text
+    print(errs)
+    return [correct_text, errs]
 
 @app.post("/editFile")  # Listens for Javascript SaveFile function
 def saveFile():  # Retrieves data from JS and saves it to DB

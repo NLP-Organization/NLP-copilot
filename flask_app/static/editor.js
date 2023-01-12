@@ -82,8 +82,20 @@ function autoCorrect() {
         contentType: "application/JSON",
         data: JSON.stringify(text),
         success: function(res){
-            document.getElementById("editor").innerText = res;
-            console.log(res);
+            document.getElementById("editor").innerText = res[0];
+            var errors = JSON.parse(res[1])
+            var toAdd = document.createDocumentFragment();
+            for (const error in errors) {
+                var newDiv = document.createElement('div');
+                console.log(error);
+                newDiv.innerText = errors[error].word;
+                var newP = document.createElement("p");
+                newP.innerText = errors[error].replacements;
+                newDiv.appendChild(newP);
+                toAdd.appendChild(newDiv);
+            }
+            document.getElementById("mySidebar").appendChild(toAdd)
+            console.log(errors);
         }
         });
     }
